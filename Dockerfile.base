@@ -1,0 +1,18 @@
+FROM quay.io/jooholee/ods-ci:stable
+
+USER root
+ENV HOME /root
+WORKDIR /root
+
+RUN dnf install -y bc git go-toolset python3-pip unzip redhat-lsb-core && \
+    git clone https://github.com/crobby/peak $HOME/peak && \    
+    cd $HOME/peak && \
+    git submodule update --init
+
+# install jq to help with parsing json
+RUN curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq && \
+    chmod +x /usr/local/bin/jq
+
+ADD https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.9.9/openshift-client-linux-4.9.9.tar.gz $HOME/peak/oc.tar.gz 
+RUN tar -C /usr/local/bin -xvf $HOME/peak/oc.tar.gz && \
+    chmod +x /usr/local/bin/oc
