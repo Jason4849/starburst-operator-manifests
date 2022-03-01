@@ -23,7 +23,8 @@ TEST_HARNESS_IMG_TAG=latest
 MANIFESTS_IMG_TAG=latest
 TEST_HARNESS_NAME=${OPERATOR_NAME}-test-harness
 MANIFESTS_NAME=${OPERATOR_NAME}-manifests
-JUPYTERHUB_NAMESPACE=opendatahub
+JUPYTERHUB_NAMESPACE=
+#JUPYTERHUB_NAMESPACE=opendatahub
 
 # JupyterNotebook - Manifests 
 # OPENSHIFT_USER/PASS/LOGIN_PROVIDER=admin/admin/test-htpasswd-provider
