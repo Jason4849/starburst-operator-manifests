@@ -19,4 +19,4 @@ RUN mkdir -p $HOME/.kube && \
 # Note:  Do not push the image to a public repo with your kubeconfig
 # ADD kubeconfig /root/.kube/config
 
-CMD $HOME/peak/installandtest.sh
+ENTRYPOINT $HOME/peak/installandtest.sh

@@ -19,6 +19,12 @@ push-image:
 
 image: build push-image
 
+final-image:
+	$(eval old_ns := $(shell cat env.sh|grep ^JUPYTERHUB_NAMESPACE|cut -d '=' -f2))
+	sed 's/JUPYTERHUB_NAMESPACE=.*/JUPYTERHUB_NAMESPACE=redhat-ods-applications/g' -i env.sh
+	make image	
+	sed "s/JUPYTERHUB_NAMESPACE=.*/JUPYTERHUB_NAMESPACE=$(old_ns)/g" -i env.sh
+	
 # Base image
 build-base-img:
 	podman build -f Dockerfile.base -t quay.io/jooholee/manifests-test-base:latest .
